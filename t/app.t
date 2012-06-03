@@ -8,7 +8,7 @@ use Plack::Builder;
 use Plack::Test;
 use File::Spec;
 
-use Plack::App::Directory;
+use Plack::App::File;
 use Plack::Middleware::DirIndex;
 use Plack::Middleware::ErrorDocument;
 
@@ -19,7 +19,7 @@ BEGIN {
 
 my $root = File::Spec->catdir( "t", "root" );
 
-my $app = Plack::App::Directory->new( { root => $root } )->to_app;
+my $app = Plack::App::File->new( { root => $root } )->to_app;
 $app = Plack::Middleware::DirIndex->wrap($app);
 $app
     = Plack::Middleware::ErrorDocument->wrap( $app, 404 => "$root/404.html" );
@@ -45,7 +45,7 @@ app_tests
     ];
 
 # Now test setting up alternative index (alt.html) file, not default
-my $app2 = Plack::App::Directory->new( { root => $root } )->to_app;
+my $app2 = Plack::App::File->new( { root => $root } )->to_app;
 $app2 = Plack::Middleware::DirIndex->wrap( $app2, dir_index => 'alt.html' );
 $app2 = Plack::Middleware::ErrorDocument->wrap( $app2,
     404 => "$root/404.html" );

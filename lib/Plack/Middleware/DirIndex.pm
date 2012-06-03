@@ -5,11 +5,11 @@ package Plack::Middleware::DirIndex;
 use parent qw( Plack::Middleware );
 use Plack::Util::Accessor qw(dir_index);
 
-=HEAD1 NAME
+=head1 NAME
 
 Plack::Middleware::DirIndex
 
-=HEAD1 SYNOPSIS
+=head1 SYNOPSIS
 
   use Plack::Builder;
   use Plack::App::File;
@@ -22,7 +22,7 @@ Plack::Middleware::DirIndex
         $app;
   }
   
-=HEAD1 DESCRIPTION
+=head1 DESCRIPTION
 
 If $env->{PATH_INFO} ends with a '/' then we will append the dir_index
 value to it (defaults to index.html)
