@@ -4,6 +4,8 @@ package Plack::Middleware::DirIndex;
 
 use parent qw( Plack::Middleware );
 use Plack::Util::Accessor qw(dir_index);
+use strict;
+use	5.004;
 
 =head1 NAME
 
