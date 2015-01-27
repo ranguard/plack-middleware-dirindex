@@ -31,6 +31,7 @@ If $env->{PATH_INFO} ends with a '/' then we will append the dir_index
 value to it (defaults to index.html)
 
 =head1 COPYRIGHT & LICENSE
+
 Copyright (c) 2012 Leo Lapworth. All rights reserved.
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
