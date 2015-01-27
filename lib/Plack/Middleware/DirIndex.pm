@@ -6,7 +6,7 @@ use parent qw( Plack::Middleware );
 use Plack::Util::Accessor qw(dir_index);
 use strict;
 use warnings;
-use	5.006;
+use 5.006;
 
 =head1 NAME
 
