@@ -4,10 +4,13 @@ package Plack::Middleware::DirIndex;
 
 use parent qw( Plack::Middleware );
 use Plack::Util::Accessor qw(dir_index);
+use strict;
+use warnings;
+use	5.006;
 
 =head1 NAME
 
-Plack::Middleware::DirIndex
+Plack::Middleware::DirIndex - Middleware to use with Plack::App::Directory and the like
 
 =head1 SYNOPSIS
 
@@ -26,6 +29,11 @@ Plack::Middleware::DirIndex
 
 If $env->{PATH_INFO} ends with a '/' then we will append the dir_index
 value to it (defaults to index.html)
+
+=head1 COPYRIGHT & LICENSE
+Copyright (c) 2012 Leo Lapworth. All rights reserved.
+This program is free software; you can redistribute
+it and/or modify it under the same terms as Perl itself.
 
 =cut
 
