@@ -3,7 +3,7 @@ package Plack::Middleware::DirIndex;
 # ABSTRACT: Append an index file to request PATH's ending with a /
 
 use parent qw( Plack::Middleware );
-use Plack::Util::Accessor qw(dir_index);
+use Plack::Util::Accessor qw(dir_index root);
 use strict;
 use warnings;
 use 5.006;
@@ -41,13 +41,16 @@ it and/or modify it under the same terms as Perl itself.
 sub prepare_app {
     my ($self) = @_;
 
+    $self->root('.')               unless $self->root;
     $self->dir_index('index.html') unless $self->dir_index;
 }
 
 sub call {
     my ( $self, $env ) = @_;
 
-    if ( $env->{PATH_INFO} =~ m{/$} ) {
+    if ( $env->{PATH_INFO} =~ m{/$}
+         and -f $self->root . '/' . $env->{PATH_INFO} . $self->dir_index ) {
+
         $env->{PATH_INFO} .= $self->dir_index();
     }
 

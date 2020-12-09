@@ -8,7 +8,7 @@ use Plack::Builder;
 use Plack::Test;
 use File::Spec;
 
-use Plack::App::File;
+use Plack::App::Directory;
 use Plack::Middleware::DirIndex;
 use Plack::Middleware::ErrorDocument;
 
@@ -19,7 +19,7 @@ BEGIN {
 
 my $root = File::Spec->catdir( "t", "root" );
 
-my $app = Plack::App::File->new( { root => $root } )->to_app;
+my $app = Plack::App::Directory->new( { root => $root } )->to_app;
 $app = Plack::Middleware::DirIndex->wrap( $app, root => $root );
 $app
     = Plack::Middleware::ErrorDocument->wrap( $app, 404 => "$root/404.html" );
@@ -39,8 +39,8 @@ app_tests
     },
     {   name    => 'Dir with no index file',
         request => [ GET => '/other/' ],
-        content => '404 page',
-        headers => { 'Content-Type' => 'text/html', },
+        content => qr[Index of /other/],
+        headers => { 'Content-Type' => 'text/html; charset=utf-8', },
     },
     ];
 
