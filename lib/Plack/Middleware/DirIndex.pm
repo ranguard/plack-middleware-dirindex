@@ -16,12 +16,13 @@ Plack::Middleware::DirIndex - Middleware to use with Plack::App::Directory and t
 
   use Plack::Builder;
   use Plack::App::File;
-  use Plack::Middleware::DirIndex;
 
   my $app = Plack::App::File->new({ root => './htdocs/' })->to_app;
 
   builder {
-        enable "Plack::Middleware::DirIndex", dir_index => 'index.html';
+        enable "Plack::Middleware::DirIndex",
+            dir_index => 'home.htm',
+            root => './htdocs/';
         $app;
   }
   
